@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -9,28 +9,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
-
-interface Army {
-  id: number;
-  egyedi: boolean;
-  name: string;
-  pic: string;
-  Status: string;
-  Species: string;
-  Gender: string;
-}
-
-interface ShoppingItem {
-  id: number;
-  name: string;
-}
-
-
-interface Box {
-  id: number;
-  title: string;
-  items: ShoppingItem[];
-}
+import { Chaservice } from '../charservice/chaservice';
+import { Army } from '../models/army';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-creat',
@@ -38,15 +19,50 @@ interface Box {
     MatInputModule,
     MatSelectModule,
     MatCardModule,
-    MatToolbarModule],
+    MatToolbarModule,
+  ],
   templateUrl: './creat.html',
   styleUrl: './creat.css',
 })
-export class Creat {
+export class Creat implements OnInit {
+  constructor(
+    private chas: Chaservice,
+    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
+
+
+  ) { }
+  armyList = signal<Army>({
+    id: 0,
+    name: "",
+    image: "",
+    status: "",
+    species: "",
+    gender: "",
+
+  });
+  ngOnInit(): void {
+    const idParam = this.route.snapshot.paramMap.get('id');
+
+    if (idParam) {
+      const id = Number(idParam);
+
+      this.chas.getcharsById(id).subscribe({
+        next: (data) => {
+          this.armyList.set(data);
+
+
+          console.log("Sikeres betöltés:", data);
+        },
+        error: (err) => console.error("Hiba a betöltéskor:", err)
+      });
+    }
+  }
 
   selectedGender: string = '';
   selectedStatus: string = '';
-  armyList = signal<Army[]>([]);
+
+
   aktSolder = signal<number | null>(null);
   private router = inject(Router);
 
@@ -72,44 +88,20 @@ export class Creat {
       alert(`Hiba! Kérlek, add meg a következőket: ${hibak.join(', ')}!`);
     } else {
       const newBox: Army = {
-        id: Date.now(),
-        egyedi: egyedi,
+        id: 0,
         name: name,
-        pic: pic,
-        Status: Status,
-        Species: Species,
-        Gender: Gender
+        image: pic,
+        status: Status,
+        species: Species,
+        gender: Gender
       };
-      this.armyList.update(currentBoxes => [...currentBoxes, newBox]);
-      this.router.navigate(['/home']);
+      this.chas.newChars(newBox).subscribe({
+        next: () => { this.router.navigate(['/home']) }
+
+      })
     }
   }
 
-  editSolder(id: number | null, name: string, pic: string, Status: string, Species: string, Gender: string) {
-    console.log("az id értéke:" + id)
-    if (id === null) {
-      alert("Nincs semmi kijelölve")
-    }
-    if (this.armyList().find(k => k.id === id)?.egyedi === false) {
-      alert("Nem modosítható")
-      return
-    }
-    this.armyList.update(list =>
-      list.map(arm => {
-        if (arm.id === id) {
-          return {
-            ...arm,
-            name: name,
-            pic: pic,
-            Status: Status,
-            Species: Species,
-            Gender: Gender
-          };
-        }
-        return arm;
-      })
-    );
-  }
 
 
 

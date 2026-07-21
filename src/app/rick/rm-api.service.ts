@@ -6,10 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RmApiService {
-  private http = inject(HttpClient); 
+  private http = inject(HttpClient);
   private apiUrl = 'https://rickandmortyapi.com/api/character';
-
-
 
   getCharacters(page: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}?page=${page}`);

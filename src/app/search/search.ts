@@ -16,18 +16,15 @@ import { Chaservice } from '../charservice/chaservice';
 import { ActivatedRoute, Router, } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
+  selector: 'app-search',
   imports: [CommonModule, RouterLink, FormsModule, MatButtonModule, MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatCardModule,
-    MatToolbarModule],
-  templateUrl: './home.html',
-  styleUrl: './home.css'
+    MatToolbarModule], templateUrl: './search.html',
+  styleUrl: './search.css',
 })
-
-export class HomeComponent implements OnInit {
+export class Search implements OnInit {
 
   keycloak = inject(Keycloak);
 
