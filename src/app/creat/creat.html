@@ -15,7 +15,7 @@
 
     <mat-form-field>
         <mat-label>Status</mat-label>
-        <mat-select [(value)]="selectedStatus" id="Status" class="list" [(ngModel)]="armyList().status">
+        <mat-select #stat id="Status" class="list" [(ngModel)]="armyList().status">
             <mat-option value="Alive">Alive</mat-option>
             <mat-option value="Dead">Dead</mat-option>
             <mat-option value="Unknown">Unknown</mat-option>
@@ -29,7 +29,7 @@
 
     <mat-form-field>
         <mat-label>Gender</mat-label>
-        <mat-select [(value)]="selectedGender" id="Gender" class="list" [(ngModel)]="armyList().gender">
+        <mat-select #gend id="Gender" class="list" [(ngModel)]="armyList().gender">
             <mat-option value="Female">Female</mat-option>
             <mat-option value="Male">Male</mat-option>
             <mat-option value="Genderless">Genderless</mat-option>
@@ -37,12 +37,9 @@
         </mat-select>
     </mat-form-field>
     <mat-card-content class="matc">
-        <button class="g" matButton="elevated" [routerLink]="['/home']"
-            (click)="addSolder(true,name.value,pic.value,
-      selectedStatus,spec.value,selectedGender);name.value ='';pic.value ='';spec.value='';selectedStatus='';selectedGender=''">
+        <button class="g" matButton="elevated" (click)="addSolder(true,name.value,pic.value,
+      stat.value,spec.value,gend.value);name.value ='';pic.value ='';spec.value='';stat.value='';gend.value=''">
             Létrehoz</button>
-        <button class="g" matButton="elevated" [routerLink]="['/home']">Vissza</button>
-        <button class="g" matButton="elevated">Edit</button>
     </mat-card-content>
 
 </mat-card>

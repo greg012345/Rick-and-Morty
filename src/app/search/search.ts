@@ -40,12 +40,11 @@ export class Search implements OnInit {
   boxCounter = 0;
   aktSolder = signal<number | null>(null);
   constructor(
-    private chars: Chaservice, private router: Router,
+    private chars: Chaservice,
+    private router: Router,
     private activatedRoute: ActivatedRoute
-
-
   ) { }
-  /// uj függvények:
+
   addSolder(egyedi: boolean, name: string, pic: string, Status: string, Species: string, Gender: string) {
     const hibak: string[] = [];
 
@@ -68,14 +67,15 @@ export class Search implements OnInit {
       alert(`Hiba! Kérlek, add meg a következőket: ${hibak.join(', ')}!`);
     } else {
       const newBox: Army = {
-        id: Date.now(),
+        id: 0,
         name: name,
         image: pic,
         status: Status,
         species: Species,
         gender: Gender
       };
-      this.armyList.update(currentBoxes => [...currentBoxes, newBox]);
+      this.chars.newChars(newBox).subscribe()
+      this.router.navigate(['/home'])
     }
   }
 
@@ -181,45 +181,6 @@ export class Search implements OnInit {
 
 
 
-
-  creatEm(firs: string, last: string, phone: string, email: string, pos: string) {
-
-    const emp: Army = {
-      id: 0,
-      name: firs,
-      image: last,
-      status: email,
-      species: phone,
-      gender: pos
-    }
-
-    let id = Number(this.activatedRoute.snapshot.paramMap.get('id'))
-    console.log(id)
-    if (id) {
-      emp.id = id;
-      this.chars.editChar(id, emp).subscribe({
-        next: (response) => {
-          console.log('Sikeres mentés a szerverre!', response);
-          this.router.navigate(['/'])
-        },
-        error: (err) => {
-          console.error('Hiba történt a mentés során:', err);
-        }
-      });
-    }
-    else {
-      this.chars.newChars(emp).subscribe({
-        next: (response) => {
-          console.log('Sikeres mentés a szerverre!', response);
-          this.router.navigate(['/'])
-        },
-        error: (err) => {
-          console.error('Hiba történt a mentés során:', err);
-        }
-
-      });
-    }
-  }
 
 
 

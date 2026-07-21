@@ -59,11 +59,6 @@ export class Creat implements OnInit {
     }
   }
 
-  selectedGender: string = '';
-  selectedStatus: string = '';
-
-
-  aktSolder = signal<number | null>(null);
   private router = inject(Router);
 
   addSolder(egyedi: boolean, name: string, pic: string, Status: string, Species: string, Gender: string) {
