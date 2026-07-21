@@ -1,142 +1,100 @@
-   <div class="cont">
-   @if (szurtKarakterek.length > 0) {
-    <mat-card class="example-card" appearance="outlined">
-      <mat-card-header class="matc">
+<mat-toolbar>
+  <span>Rick and Morty app</span>
+  <span class="example-spacer"></span>
+  <a mat-button href="/home">Home</a>
+  <a mat-button href="/creat">Products</a>
+  <a mat-button (click)="logout()">Kilépes</a>
+</mat-toolbar>
+
+<div class="cont">
+  @if (szurtKarakterek.length > 0) {
+  <mat-card class="example-card" appearance="outlined">
+    <mat-card-header class="matc">
       <mat-card-title>{{ szurtKarakterek[aktualisIndex()!].name }}</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image [src]="szurtKarakterek[aktualisIndex()!].image" >
-      <mat-card-content>
+    </mat-card-header>
+    <img mat-card-image [src]="szurtKarakterek[aktualisIndex()!].image">
+    <mat-card-content>
       <strong>Status:</strong> {{ szurtKarakterek[aktualisIndex()!].status }} <br>
       <strong>Species:</strong> {{ szurtKarakterek[aktualisIndex()!].species }}<br>
-      <strong>Gender:</strong> {{ szurtKarakterek[aktualisIndex()!].gender }}    <br> 
-      </mat-card-content>
-      <mat-card-content class="matc">
-        <button matButton="elevated" class="g" (click)="prevItem(80);">Prev</button>
-        <button matButton="elevated" class="g" (click)="nextItem(80);">Next</button>
-      </mat-card-content>
-    </mat-card>
+      <strong>Gender:</strong> {{ szurtKarakterek[aktualisIndex()!].gender }} <br>
+    </mat-card-content>
+    <mat-card-content class="matc">
+      <button matButton="elevated" class="g" (click)="prevItem(80);">Prev</button>
+      <button matButton="elevated" class="g" (click)="nextItem(80);">Next</button>
+    </mat-card-content>
+  </mat-card>
   }
   @else{
-    <mat-card class="example-card" appearance="outlined">
-      <div class="nincstal">
-        <p>Nincs találat!</p>
-        </div>
-    </mat-card>
+  <mat-card class="example-card" appearance="outlined">
+    <div class="nincstal">
+      <p>Nincs találat!</p>
+    </div>
+  </mat-card>
   }
-  
-  <mat-card  class="example-card" appearance="outlined">
-      <mat-card-header class="matc">
-          <mat-card-title>Keresés</mat-card-title>
-      </mat-card-header>
 
-      <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Name" type="text" [(ngModel)]="keresoSzo" >
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Status</mat-label>
-          <mat-select #stat id="Status" class="list" [(ngModel)]="keresoStatus">
-            <mat-option value="Alive">Alive</mat-option>
-            <mat-option value="Dead">Dead</mat-option>
-            <mat-option value="Unknown">Unknown</mat-option>
-          </mat-select>
-        </mat-form-field>
+  <mat-card class="example-card" appearance="outlined">
+    <mat-card-header class="matc">
+      <mat-card-title>Keresés</mat-card-title>
+    </mat-card-header>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Species</mat-label>
-          <input matInput placeholder="Species"  type="text" [(ngModel)]="keresoSpecies">
-        </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" type="text" [(ngModel)]="keresoSzo">
+    </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Gender</mat-label>
-          <mat-select #gender id="Gender" class="list" [(ngModel)]="keresoGender">
-            <mat-option value="Female">Female</mat-option>
-            <mat-option value="Male">Male</mat-option>
-            <mat-option value="Genderless">Genderless</mat-option>
-            <mat-option value="Unknown">Unknown</mat-option>
-          </mat-select>
-        </mat-form-field>
-      <mat-card-content class="matc">
-        <button matButton="elevated" class="g" (click)="addSolder(false,szurtKarakterek[aktualisIndex()!].name,
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select #stat id="Status" class="list" [(ngModel)]="keresoStatus">
+        <mat-option value="Alive">Alive</mat-option>
+        <mat-option value="Dead">Dead</mat-option>
+        <mat-option value="Unknown">Unknown</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Species</mat-label>
+      <input matInput placeholder="Species" type="text" [(ngModel)]="keresoSpecies">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <mat-select #gender id="Gender" class="list" [(ngModel)]="keresoGender">
+        <mat-option value="Female">Female</mat-option>
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Genderless">Genderless</mat-option>
+        <mat-option value="Unknown">Unknown</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-card-content class="matc">
+      <button matButton="elevated" class="g" (click)="addSolder(false,szurtKarakterek[aktualisIndex()!].name,
         szurtKarakterek[aktualisIndex()!].image,szurtKarakterek[aktualisIndex()!].status,
         szurtKarakterek[aktualisIndex()!].species,
         szurtKarakterek[aktualisIndex()!].gender
         )">Kiválaszt</button>
-      </mat-card-content>
+    </mat-card-content>
 
-</mat-card>
-
-<mat-card class="example-card" appearance="outlined">
-        <mat-card-header class="matc">
-      <mat-card-title>Saját készítés</mat-card-title>
-      </mat-card-header>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Name" #Name type="text">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>pic</mat-label>
-          <input matInput placeholder="pic" #pic type="text">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Status</mat-label>
-          <mat-select [(value)]="selectedStatus" id="Status" class="list">
-            <mat-option value="Alive">Alive</mat-option>
-            <mat-option value="Dead">Dead</mat-option>
-            <mat-option value="Unknown">Unknown</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Species</mat-label>
-          <input matInput placeholder="Species" #spec type="text">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Gender</mat-label>
-          <mat-select [(value)]="selectedGender" id="Gender" class="list">
-            <mat-option value="Female">Female</mat-option>
-            <mat-option value="Male">Male</mat-option>
-            <mat-option value="Genderless">Genderless</mat-option>
-            <mat-option value="Unknown">Unknown</mat-option>
-          </mat-select>
-        </mat-form-field>
-      <mat-card-content class="matc">
-        <button class="g" matButton="elevated" (click)="$event.stopPropagation();addSolder(true,Name.value,pic.value,
-      selectedStatus,spec.value,selectedGender);Name.value ='';pic.value ='';spec.value='';selectedStatus='';selectedGender=''">
-      Létrehoz</button>
-      <button  class="g" matButton="elevated" (click)="$event.stopPropagation();editSolder(aktSolder(),Name.value,pic.value,
-    stat.value,spec.value,gender.value);
-    Name.value ='';pic.value ='';spec.value='';stat.value='';gender.value=''"> EDIT </button> 
-      </mat-card-content>
-
-</mat-card>
+  </mat-card>
 
 </div>
 
-  
-    
 <div class="cont2">
-@for (army of armyList(); track army.id;let k = $index) {
-      <mat-card class="example-card" appearance="outlined">
-      <mat-card-header class="matc">
-        <mat-card-title>{{army.name}}</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image [src]="army.pic">
-      <mat-card-content>
-          <p>Status: {{army.Status}} <br>
-            Species: {{army.Species}} <br>
-            Gender: {{army.Gender}}
-          </p>
-      </mat-card-content>
-      <mat-card-content class="matc">
-            <button matButton="elevated" class="g" (click)="removeSolder(army.id)">Törlés</button>
-      </mat-card-content>
-      </mat-card>
-   }
+  @for (army of armyList(); track army.id;let k = $index) {
+  <mat-card class="example-card" appearance="outlined">
+    <mat-card-header class="matc">
+      <mat-card-title>{{army.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="army.pic">
+    <mat-card-content>
+      <p>Status: {{army.Status}} <br>
+        Species: {{army.Species}} <br>
+        Gender: {{army.Gender}}
+      </p>
+    </mat-card-content>
+    <mat-card-content class="matc">
+      <button matButton="elevated" class="g" (click)="removeSolder(army.id)">Törlés</button>
+      <button matButton="elevated" class="g">Edit</button>
+    </mat-card-content>
+  </mat-card>
+  }
 
 </div>

@@ -1,39 +1,43 @@
-.akt{
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.akt {
     border: 2px solid red;
 
 }
 
 .example-card {
-  max-width: 400px;
-  max-height: 550px;
-  padding: 40px
-
+    max-width: 500px;
+    max-height: 550px;
+    padding: 40px
 }
 
-.cont{
+.cont {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
 }
 
-.cont2{
+.cont2 {
     display: flex;
     flex-direction: row;
 }
 
 
-.g:hover{
-    background-color: yellow    ;
+.g:hover {
+    background-color: yellow;
 }
 
 
-.matc{
+.matc {
     margin-top: 10px;
     display: flex;
     justify-content: space-around;
 }
 
-.nincstal{
+.nincstal {
     width: 100%;
     height: 100%;
     display: flex;
@@ -42,11 +46,10 @@
 }
 
 .active-green {
-  color: #2ed573 !important; 
-  font-weight: bold;
+    color: #2ed573 !important;
+    font-weight: bold;
 }
 
 .active-red {
-  border: solid 2px red !important;
+    border: solid 2px red !important;
 }
-

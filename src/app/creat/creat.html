@@ -1,0 +1,47 @@
+<mat-card class="example-card" appearance="outlined">
+    <mat-card-header class="matc">
+        <mat-card-title>Saját készítés</mat-card-title>
+    </mat-card-header>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" #Name type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>pic</mat-label>
+        <input matInput placeholder="pic" #pic type="text">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedStatus" id="Status" class="list">
+            <mat-option value="Alive">Alive</mat-option>
+            <mat-option value="Dead">Dead</mat-option>
+            <mat-option value="Unknown">Unknown</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Species</mat-label>
+        <input matInput placeholder="Species" #spec type="text">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Gender</mat-label>
+        <mat-select [(value)]="selectedGender" id="Gender" class="list">
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Genderless">Genderless</mat-option>
+            <mat-option value="Unknown">Unknown</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-card-content class="matc">
+        <button class="g" matButton="elevated"
+            (click)="$event.stopPropagation();addSolder(true,Name.value,pic.value,
+      selectedStatus,spec.value,selectedGender);Name.value ='';pic.value ='';spec.value='';selectedStatus='';selectedGender=''">
+            Létrehoz</button>
+        <button class="g" matButton="elevated" [routerLink]="['/home']">Vissza</button>
+    </mat-card-content>
+
+</mat-card>
