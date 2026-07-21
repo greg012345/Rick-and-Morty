@@ -95,16 +95,12 @@ export class Creat implements OnInit {
         species: Species,
         gender: Gender
       };
+      console.log(newBox)
       this.chas.newChars(newBox).subscribe({
         next: () => { this.router.navigate(['/home']) }
 
       })
     }
   }
-
-
-
-
-
 
 }

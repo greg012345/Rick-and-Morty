@@ -3,9 +3,10 @@ import { signal } from '@angular/core';
 import { Army } from '../models/army';
 import { Chaservice } from '../charservice/chaservice';
 import { OnInit } from '@angular/core';
+import { RouterLink } from "@angular/router";
 @Component({
   selector: 'app-teszt',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './teszt.html',
   styleUrl: './teszt.css',
 })

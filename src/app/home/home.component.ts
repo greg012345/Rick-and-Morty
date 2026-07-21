@@ -231,7 +231,9 @@ export class HomeComponent implements OnInit {
 
   }
 
-
+  get username(): string {
+    return this.keycloak.tokenParsed?.['preferred_username'] ?? '';
+  }
 
 
 

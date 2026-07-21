@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<router-outlet>
+    <mat-toolbar>
+        <span>Rick and Morty app</span>
+        <span class="example-spacer"></span>
+        <a mat-button href="/home">Home</a>
+        <a mat-button href="/creat">Létrehozás</a>
+        <a mat-button href="search">Keresés</a>
+        @if (keycloak.authenticated) {
+        @if (username === 'teszt') {
+        <a mat-button href="teszt">Teszt</a>
+        }
+        }
+        <a mat-button (click)="logout()">Kilépes</a>
+    </mat-toolbar>
+</router-outlet>

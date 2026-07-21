@@ -1,14 +1,16 @@
-<mat-toolbar>
+<!--<mat-toolbar>
   <span>Rick and Morty app</span>
   <span class="example-spacer"></span>
   <a mat-button href="/home">Home</a>
-  <a mat-button href="/creat">Létre hozás</a>
+  <a mat-button href="/creat">Létrehozás</a>
   <a mat-button href="search">Keresés</a>
-  <a mat-button (click)="logout()">Kilépes</a>
+  @if (keycloak.authenticated) {
+  @if (username === 'teszt') {
   <a mat-button href="teszt">Teszt</a>
-</mat-toolbar>
-
-
+  }
+  }
+  <a mat-button (click)="logout()">Kilépes</a>
+</mat-toolbar>-->
 
 <div class="cont2">
   @for (army of armyList(); track $index) {

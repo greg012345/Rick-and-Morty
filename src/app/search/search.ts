@@ -14,7 +14,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Army } from '../models/army';
 import { Chaservice } from '../charservice/chaservice';
 import { ActivatedRoute, Router, } from '@angular/router';
-
 @Component({
   selector: 'app-search',
   imports: [CommonModule, RouterLink, FormsModule, MatButtonModule, MatFormFieldModule,
@@ -80,56 +79,6 @@ export class Search implements OnInit {
     }
   }
 
-  removeSolder(idToTöröl: number) {
-    this.armyList.update(currentBoxes =>
-      currentBoxes.filter(box => box.id !== idToTöröl)
-    );
-    console.log("akt doboz:" + this.aktDoboz + "a fokusz:")
-    this.aktDoboz.set(null);
-
-  }
-
-  editSolder(id: number | null, name: string, pic: string, Status: string, Species: string, Gender: string) {
-    console.log("az id értéke:" + id)
-    if (id === null) {
-      alert("Nincs semmi kijelölve")
-    }
-
-    this.armyList.update(list =>
-      list.map(arm => {
-        if (arm.id === id) {
-          return {
-            ...arm,
-            name: name,
-            pic: pic,
-            Status: Status,
-            Species: Species,
-            Gender: Gender
-          };
-        }
-        return arm;
-      })
-    );
-  }
-
-  logout() {
-    this.keycloak.logout({ redirectUri: window.location.origin });
-  }
-
-  del(id: number) {
-    this.chars.deleteChar(id).subscribe({
-      next: (response) => {
-        console.log('Sikeres mentés a szerverre!');
-        this.chars.getchars().subscribe(data => {
-          this.armyList.set(data)
-        })
-      }
-
-    });
-  }
-  ///
-
-
 
 
 
@@ -152,9 +101,9 @@ export class Search implements OnInit {
 
 
   private apiService = inject(RmApiService);
-  characters = signal<Army[]>([]);
+  //characters = signal<Army[]>([]);
 
-  charactersssssss: any[] = [];
+  characters: any[] = [];
   characters_alive: any[] = [];
   private zone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
@@ -173,7 +122,7 @@ export class Search implements OnInit {
   keresoGender: string = '';
 
   get szurtKarakterek() {
-    let eredmeny = this.charactersssssss;
+    let eredmeny = this.characters;
 
     if (this.keresoSzo.trim()) {
       const szo = this.keresoSzo.toLowerCase();
@@ -199,7 +148,7 @@ export class Search implements OnInit {
     this.apiService.getCharacters(page).subscribe({
       next: (data) => {
         // Frissítjük a Signal-t az új adatokkal
-        this.characters.set(data.results);
+        this.characters = (data.results);
         console.log('Megérkezett az adat:', data.results);
       },
       error: (err) => console.error('Hiba az API hívásban:', err)

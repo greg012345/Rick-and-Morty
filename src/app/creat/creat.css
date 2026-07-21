@@ -1,0 +1,55 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.akt {
+    border: 2px solid red;
+
+}
+
+.example-card {
+    max-width: 500px;
+    max-height: 550px;
+    padding: 40px
+}
+
+.cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.cont2 {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.g:hover {
+    background-color: yellow;
+}
+
+
+.matc {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nincstal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-green {
+    color: #2ed573 !important;
+    font-weight: bold;
+}
+
+.active-red {
+    border: solid 2px red !important;
+}
