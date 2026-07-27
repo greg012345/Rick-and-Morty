@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import Keycloak from 'keycloak-js';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+
 @Component({
   selector: 'app-auth',
   standalone: true,
@@ -29,6 +30,9 @@ export class Login {
   }
 
   register() {
-    this.keycloak.register();
+    this.keycloak.register({
+      redirectUri: window.location.origin + '/home'
+
+    });
   }
 }

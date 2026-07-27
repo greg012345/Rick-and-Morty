@@ -1,0 +1,18 @@
+-Search:
+reset status
+
+-Desing
+Responsive oldallak //
+
+-Tisztitás:
+angulár rész 
+backend rész átnevezés és átírás
+
+-git
+commit és dokumentálás
+
+-rick and morty
+api hivás kereséshez
+
+creat:
+gomb nem jó ha nincs minden kitölve

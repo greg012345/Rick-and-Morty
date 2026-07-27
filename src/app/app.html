@@ -1,6 +1,7 @@
 <router-outlet>
+    @if(isLoggedIn){
     <mat-toolbar>
-        <span>Rick and Morty app</span>
+        <span>Rick and Morty app: {{username}}</span>
         <span class="example-spacer"></span>
         <a mat-button href="/home">Home</a>
         <a mat-button href="/creat">Létrehozás</a>
@@ -12,4 +13,5 @@
         }
         <a mat-button (click)="logout()">Kilépes</a>
     </mat-toolbar>
+    }
 </router-outlet>

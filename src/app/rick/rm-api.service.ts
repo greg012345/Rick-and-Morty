@@ -13,4 +13,7 @@ export class RmApiService {
     return this.http.get<any>(`${this.apiUrl}?page=${page}`);
   }
 
+  getMaxnum(): Observable<any> {
+    return this.http.get<any>(this.apiUrl)
+  }
 }

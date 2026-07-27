@@ -1,9 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Route, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RmApiService } from '../rick/rm-api.service';
-import { OnInit, inject, ChangeDetectorRef, NgZone } from '@angular/core';
+import { OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,41 +12,42 @@ import Keycloak from 'keycloak-js';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Army } from '../models/army';
 import { Chaservice } from '../charservice/chaservice';
-import { ActivatedRoute, Router, } from '@angular/router';
+import { Router, } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-search',
-  imports: [CommonModule, RouterLink, FormsModule, MatButtonModule, MatFormFieldModule,
+  imports: [CommonModule, FormsModule, MatButtonModule, MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatCardModule,
+
     MatToolbarModule], templateUrl: './search.html',
   styleUrl: './search.css',
 })
 export class Search implements OnInit {
 
   keycloak = inject(Keycloak);
-
-  activeIndex = signal<number | null>(null);
+  private apiService = inject(RmApiService);
   aktualisIndex = signal<number>(0);
-  aktDobozCim = signal<number | null>(null);
-  aktDoboz = signal<number | null>(null);
-  selectedGender: string = '';
-  selectedStatus: string = '';
 
-  armyList = signal<Army[]>([]);
+  characters: any[] = [];
 
-
-  boxCounter = 0;
-  aktSolder = signal<number | null>(null);
+  keresoSzo: string = '';
+  keresoStatus: string = '';
+  keresoSpecies: string = '';
+  keresoGender: string = '';
   constructor(
     private chars: Chaservice,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private cdr: ChangeDetectorRef,
   ) { }
 
-  addSolder(egyedi: boolean, name: string, pic: string, Status: string, Species: string, Gender: string) {
-    const hibak: string[] = [];
+  ngOnInit(): void {
+    this.loadPage();
+  }
 
+  addSolder(name: string, pic: string, Status: string, Species: string, Gender: string) {
+    const hibak: string[] = [];
     if (name.trim() === "") {
       hibak.push("karakter nevet");
     }
@@ -72,7 +72,9 @@ export class Search implements OnInit {
         image: pic,
         status: Status,
         species: Species,
-        gender: Gender
+        gender: Gender,
+        creatBy: this.keycloak.tokenParsed?.['preferred_username'] ?? ''
+
       };
       this.chars.newChars(newBox).subscribe()
       this.router.navigate(['/home'])
@@ -80,46 +82,39 @@ export class Search implements OnInit {
   }
 
 
-
-
-  nextItem(maxItems: number) {
-    if (this.aktualisIndex()! < maxItems - 1) {
+  nextItem(Ms: number) {
+    if (this.aktualisIndex()! < Ms - 1) {
       this.aktualisIndex.update(index => index! + 1);
+      console.log("aktindexix:" + this.aktualisIndex())
     } else {
+      console.log("aktindexix:" + this.aktualisIndex())
       this.aktualisIndex.set(0);
     }
-    console.log("AHa")
   }
 
-  prevItem(maxItems: number) {
+  prevItem() {
     if (this.aktualisIndex()! > 0) {
       this.aktualisIndex.update(index => index! - 1);
+      console.log("aktindexix:" + this.aktualisIndex())
     } else {
-      this.aktualisIndex.set(maxItems - 1);
+      console.log("aktindexix:" + this.aktualisIndex())
     }
   }
 
+  loadPage(): void {
+    for (let i: number = 1; i < 43; i++) {
+      this.apiService.getCharacters(i).subscribe({
+        next: (data) => {
+          this.characters = [...this.characters, ...data.results];
+          //console.log('Megérkezett az adat:', data.results);
+          this.cdr.detectChanges();
+        },
+        error: (err) => console.error('Hiba az API hívásban:', err)
+      });
+    }
 
-  private apiService = inject(RmApiService);
-  //characters = signal<Army[]>([]);
-
-  characters: any[] = [];
-  characters_alive: any[] = [];
-  private zone = inject(NgZone);
-  private cdr = inject(ChangeDetectorRef);
-  currentPage: number = 10;
-
-  ngOnInit(): void {
-    this.loadPage(this.currentPage);
-    this.chars.getchars().subscribe(data => {
-      this.armyList.set(data)
-    })
   }
 
-  keresoSzo: string = '';
-  keresoStatus: string = '';
-  keresoSpecies: string = '';
-  keresoGender: string = '';
 
   get szurtKarakterek() {
     let eredmeny = this.characters;
@@ -143,47 +138,6 @@ export class Search implements OnInit {
     }
     return eredmeny;
   }
-
-  loadPage(page: number): void {
-    this.apiService.getCharacters(page).subscribe({
-      next: (data) => {
-        // Frissítjük a Signal-t az új adatokkal
-        this.characters = (data.results);
-        console.log('Megérkezett az adat:', data.results);
-      },
-      error: (err) => console.error('Hiba az API hívásban:', err)
-    });
-  }
-
-  nextPage() {
-    this.currentPage++;
-    console.log(`-> [Next gomb] Oldal növelve: ${this.currentPage}`);
-    this.loadPage(this.currentPage);
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      console.log(`<- [Prev gomb] Oldal csökkentve: ${this.currentPage}`);
-      this.loadPage(this.currentPage);
-    }
-  }
-
-  All() {
-    for (let i: number = 0; i < 43; i++) {
-      this.loadPage(i);
-      this.currentPage++;
-    }
-
-  }
-
-
-
-
-
-
-
-
 }
 
 

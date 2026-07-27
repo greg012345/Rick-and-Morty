@@ -1,35 +1,30 @@
-<!--<mat-toolbar>
-  <span>Rick and Morty app</span>
-  <span class="example-spacer"></span>
-  <a mat-button href="/home">Home</a>
-  <a mat-button href="/creat">Létrehozás</a>
-  <a mat-button href="search">Keresés</a>
-  @if (keycloak.authenticated) {
-  @if (username === 'teszt') {
-  <a mat-button href="teszt">Teszt</a>
-  }
-  }
-  <a mat-button (click)="logout()">Kilépes</a>
-</mat-toolbar>-->
-
-<div class="cont2">
+<div class="grid">
+  @if(armyList().length != 0){
   @for (army of armyList(); track $index) {
-  <mat-card class="example-card" appearance="outlined">
-    <mat-card-header class="matc">
-      <mat-card-title>{{army.name}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="army.image">
-    <mat-card-content>
-      <p>Status: {{army.status}} <br>
-        Species: {{army.species}} <br>
-        Gender: {{army.gender}}
-      </p>
-    </mat-card-content>
-    <mat-card-content class="matc">
-      <button matButton="elevated" class="g" (click)="del(army.id)">Törlés</button>
-      <button matButton="elevated" class="g" [routerLink]="['/creat',army.id]">Edit</button>
-    </mat-card-content>
-  </mat-card>
+  <div>
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header class="matc">
+        <mat-card-title>{{army.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image width="300" height="350" [src]="army.image">
+      <mat-card-content>
+        <p>Status: {{army.status}} <br>
+          Species: {{army.species}} <br>
+          Gender: {{army.gender}}
+        </p>
+      </mat-card-content>
+      <mat-card-content class="matc">
+        <button matButton="elevated" class="g" (click)="del(army.id)">Törlés</button>
+        <button matButton="elevated" class="g" [routerLink]="['/creat',army.id]">Edit</button>
+      </mat-card-content>
+      <p>Created by: {{army.creatBy}}</p>
+    </mat-card>
+  </div>
   }
-
+  }
+  @else {
+  <div class="empty">
+    <h1>Üdvözüllek az appban!</h1>
+  </div>
+  }
 </div>
