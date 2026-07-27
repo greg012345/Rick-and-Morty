@@ -6,12 +6,15 @@
       <mat-card-header class="matc">
         <mat-card-title>{{army.name}}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image width="300" height="350" [src]="army.image">
       <mat-card-content>
-        <p>Status: {{army.status}} <br>
+        <div class="cont3">
+          <div class="cont4">
+            <img mat-card-image width="300" height="350" [src]="army.image">
+          </div>
+          Status: {{army.status}} <br>
           Species: {{army.species}} <br>
           Gender: {{army.gender}}
-        </p>
+        </div>
       </mat-card-content>
       <mat-card-content class="matc">
         <button matButton="elevated" class="g" (click)="del(army.id)">Törlés</button>
@@ -22,9 +25,10 @@
   </div>
   }
   }
-  @else {
-  <div class="empty">
-    <h1>Üdvözüllek az appban!</h1>
-  </div>
-  }
 </div>
+
+@if(armyList().length == 0) {
+<div class="empty">
+  <h1>Üdvözüllek az appban!</h1>
+</div>
+}

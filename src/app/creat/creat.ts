@@ -69,19 +69,19 @@ export class Creat implements OnInit {
     const hibak: string[] = [];
 
     if (name.trim() === "") {
-      hibak.push("karakter nevet");
+      hibak.push("Karakter neve");
     }
     if (pic.trim() === "") {
-      hibak.push("kép nevet");
+      hibak.push("Kép neve");
     }
     if (Status.trim() === "") {
-      hibak.push("státuszt");
+      hibak.push("Státuszt neve");
     }
     if (Species.trim() === "") {
-      hibak.push("Species");
+      hibak.push("Faj neve");
     }
     if (Gender.trim() === "") {
-      hibak.push("Gender");
+      hibak.push("Nem neve");
     }
     if (hibak.length > 0) {
       alert(`Hiba! Kérlek, add meg a következőket: ${hibak.join(', ')}!`);

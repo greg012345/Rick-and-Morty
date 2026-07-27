@@ -1,11 +1,9 @@
 -Search:
-reset status
-
--Desing
-Responsive oldallak //
+desing modosítás
+api hivás?
+kiválaszt gomb nics találatnál adj valami szöveget
 
 -Tisztitás:
-angulár rész 
 backend rész átnevezés és átírás
 
 -git
@@ -14,5 +12,16 @@ commit és dokumentálás
 -rick and morty
 api hivás kereséshez
 
-creat:
-gomb nem jó ha nincs minden kitölve
+-főmenu
+edit gomb változzon a cread by ha nem változik semmi?
+
+
+DOcker: app config ban állítható
+creat realm: Demo-realm
+client: angular-app
+root url: http://localhost:4200
+valid redirect urls : http://localhost:4200/*
+web origins: http://localhost:4200
+admin url: http://localhost:4200
+creat a user
+regisztráció bekapcsolás : realm setting login user registration

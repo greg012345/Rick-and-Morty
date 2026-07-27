@@ -1,5 +1,4 @@
 import { ApplicationConfig } from '@angular/core';
-import { withRouterConfig } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   provideKeycloak,

@@ -47,37 +47,43 @@ export class Search implements OnInit {
   }
 
   addSolder(name: string, pic: string, Status: string, Species: string, Gender: string) {
-    const hibak: string[] = [];
-    if (name.trim() === "") {
-      hibak.push("karakter nevet");
+    console.log(name == undefined)
+    if (name == undefined) {
+      alert("Hiba nincs kiválasztott elem!")
     }
-    if (pic.trim() === "") {
-      hibak.push("kép nevet");
-    }
-    if (Status.trim() === "") {
-      hibak.push("státuszt");
-    }
-    if (Species.trim() === "") {
-      hibak.push("Species");
-    }
-    if (Gender.trim() === "") {
-      hibak.push("Gender");
-    }
-    if (hibak.length > 0) {
-      alert(`Hiba! Kérlek, add meg a következőket: ${hibak.join(', ')}!`);
-    } else {
-      const newBox: Army = {
-        id: 0,
-        name: name,
-        image: pic,
-        status: Status,
-        species: Species,
-        gender: Gender,
-        creatBy: this.keycloak.tokenParsed?.['preferred_username'] ?? ''
+    else {
+      const hibak: string[] = [];
+      if (name.trim() === "") {
+        hibak.push("karakter nevet");
+      }
+      if (pic.trim() === "") {
+        hibak.push("kép nevet");
+      }
+      if (Status.trim() === "") {
+        hibak.push("státuszt");
+      }
+      if (Species.trim() === "") {
+        hibak.push("Species");
+      }
+      if (Gender.trim() === "") {
+        hibak.push("Gender");
+      }
+      if (hibak.length > 0) {
+        alert(`Hiba! Kérlek, add meg a következőket: ${hibak.join(', ')}!`);
+      } else {
+        const newBox: Army = {
+          id: 0,
+          name: name,
+          image: pic,
+          status: Status,
+          species: Species,
+          gender: Gender,
+          creatBy: this.keycloak.tokenParsed?.['preferred_username'] ?? ''
 
-      };
-      this.chars.newChars(newBox).subscribe()
-      this.router.navigate(['/home'])
+        };
+        this.chars.newChars(newBox).subscribe()
+        this.router.navigate(['/home'])
+      }
     }
   }
 
@@ -85,9 +91,9 @@ export class Search implements OnInit {
   nextItem(Ms: number) {
     if (this.aktualisIndex()! < Ms - 1) {
       this.aktualisIndex.update(index => index! + 1);
-      console.log("aktindexix:" + this.aktualisIndex())
+      //console.log("aktindexix:" + this.aktualisIndex())
     } else {
-      console.log("aktindexix:" + this.aktualisIndex())
+      //console.log("aktindexix:" + this.aktualisIndex())
       this.aktualisIndex.set(0);
     }
   }
@@ -95,9 +101,9 @@ export class Search implements OnInit {
   prevItem() {
     if (this.aktualisIndex()! > 0) {
       this.aktualisIndex.update(index => index! - 1);
-      console.log("aktindexix:" + this.aktualisIndex())
+      //console.log("aktindexix:" + this.aktualisIndex())
     } else {
-      console.log("aktindexix:" + this.aktualisIndex())
+      //console.log("aktindexix:" + this.aktualisIndex())
     }
   }
 
@@ -137,6 +143,14 @@ export class Search implements OnInit {
       eredmeny = eredmeny.filter(char => char.gender.toLowerCase() == this.keresoGender.toLocaleLowerCase())
     }
     return eredmeny;
+  }
+
+  reset() {
+
+    this.keresoSzo = '';
+    this.keresoStatus = '';
+    this.keresoSpecies = '';
+    this.keresoGender = '';
   }
 }
 

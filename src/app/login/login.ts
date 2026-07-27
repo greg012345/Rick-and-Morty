@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import Keycloak from 'keycloak-js';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-auth',
   standalone: true,
@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './login.css'
 })
 export class Login {
+  constructor(private http: HttpClient) { }
   keycloak = inject(Keycloak);
 
   login() {
@@ -29,10 +30,4 @@ export class Login {
     return this.keycloak.tokenParsed?.['preferred_username'] ?? '';
   }
 
-  register() {
-    this.keycloak.register({
-      redirectUri: window.location.origin + '/home'
-
-    });
-  }
 }
