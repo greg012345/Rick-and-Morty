@@ -11,14 +11,14 @@ import {
   _CdkPrivateStyleLoader
 } from "./chunk-ASRMF76P.js";
 import {
-  BidiModule
-} from "./chunk-OJITQTUR.js";
-import {
   coerceElement
 } from "./chunk-5V7J36OO.js";
 import {
   Platform
 } from "./chunk-KOX3QPAF.js";
+import {
+  BidiModule
+} from "./chunk-OJITQTUR.js";
 import {
   Component,
   Directive,
@@ -586,4 +586,4 @@ export {
   _StructuralStylesLoader,
   MatRippleModule
 };
-//# sourceMappingURL=chunk-OCCLM3AM.js.map
+//# sourceMappingURL=chunk-L3VUQVDX.js.map

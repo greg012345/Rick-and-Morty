@@ -4,7 +4,7 @@ import {
   RippleRenderer,
   _StructuralStylesLoader,
   defaultRippleAnimationConfig
-} from "./chunk-OCCLM3AM.js";
+} from "./chunk-L3VUQVDX.js";
 import {
   FocusMonitor,
   _animationsDisabled
@@ -13,13 +13,10 @@ import {
   _getEventTarget
 } from "./chunk-HGAN43Y6.js";
 import "./chunk-DNRG6PRA.js";
+import "./chunk-GUGIMSVJ.js";
 import {
   _CdkPrivateStyleLoader
 } from "./chunk-ASRMF76P.js";
-import "./chunk-GUGIMSVJ.js";
-import {
-  BidiModule
-} from "./chunk-OJITQTUR.js";
 import "./chunk-5V7J36OO.js";
 import {
   Platform
@@ -27,6 +24,9 @@ import {
 import "./chunk-5HGTJ5FO.js";
 import "./chunk-SLSYECRZ.js";
 import "./chunk-GD3A2BU3.js";
+import {
+  BidiModule
+} from "./chunk-OJITQTUR.js";
 import {
   Component,
   DOCUMENT,

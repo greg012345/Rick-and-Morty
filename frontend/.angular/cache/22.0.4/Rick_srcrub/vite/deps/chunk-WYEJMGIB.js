@@ -5,15 +5,15 @@ import {
   coerceBooleanProperty
 } from "./chunk-YT4NRQP6.js";
 import {
-  BidiModule,
-  Directionality
-} from "./chunk-OJITQTUR.js";
-import {
   Platform
 } from "./chunk-KOX3QPAF.js";
 import {
   NgTemplateOutlet
 } from "./chunk-SLSYECRZ.js";
+import {
+  BidiModule,
+  Directionality
+} from "./chunk-OJITQTUR.js";
 import {
   ChangeDetectorRef,
   Component,
@@ -1514,4 +1514,4 @@ export {
   MatFormField,
   MatFormFieldModule
 };
-//# sourceMappingURL=chunk-DEYJ5JQZ.js.map
+//# sourceMappingURL=chunk-WYEJMGIB.js.map

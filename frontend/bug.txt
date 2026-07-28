@@ -1,11 +1,11 @@
+hiba kommentelések
 -Search:
 desing modosítás
 api hivás?
 kiválaszt gomb nics találatnál adj valami szöveget
-
--Tisztitás:
-backend rész átnevezés és átírás
-
+resetnél ugurjon az elejére vagy sem?
+hiba:
+status unknown spiceis: alien gender: male
 -git
 commit és dokumentálás
 
@@ -25,3 +25,5 @@ web origins: http://localhost:4200
 admin url: http://localhost:4200
 creat a user
 regisztráció bekapcsolás : realm setting login user registration
+
+npm install 

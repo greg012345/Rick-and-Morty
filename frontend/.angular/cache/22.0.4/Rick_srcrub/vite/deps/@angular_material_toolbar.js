@@ -1,13 +1,13 @@
 import "./chunk-HGAN43Y6.js";
 import "./chunk-GUGIMSVJ.js";
 import {
-  BidiModule
-} from "./chunk-OJITQTUR.js";
-import {
   Platform
 } from "./chunk-KOX3QPAF.js";
 import "./chunk-SLSYECRZ.js";
 import "./chunk-GD3A2BU3.js";
+import {
+  BidiModule
+} from "./chunk-OJITQTUR.js";
 import {
   Component,
   ContentChildren,
