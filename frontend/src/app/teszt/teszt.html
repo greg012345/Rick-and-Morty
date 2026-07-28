@@ -1,0 +1,12 @@
+<ul>
+    @for(item of characters();track $index){
+    <li>{{item.gender}}
+        {{item.species}}
+        {{item.status}}
+        {{item.name}}
+        <img [src]="item.image" alt="">
+    </li>
+    }
+</ul>
+
+<button [routerLink]="['/home']">Vissza</button>

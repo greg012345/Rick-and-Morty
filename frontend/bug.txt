@@ -1,11 +1,11 @@
-hiba kommentelések
 -Search:
 desing modosítás
 api hivás?
 kiválaszt gomb nics találatnál adj valami szöveget
-resetnél ugurjon az elejére vagy sem?
-hiba:
-status unknown spiceis: alien gender: male
+
+-Tisztitás:
+backend rész átnevezés és átírás
+
 -git
 commit és dokumentálás
 

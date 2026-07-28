@@ -6,4 +6,5 @@ export interface Army {
     species: string;
     gender: string;
     createdBy: string;
+
 }
