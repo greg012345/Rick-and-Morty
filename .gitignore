@@ -1,15 +1,20 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+dist/
+tmp/
+out-tsc/
+bazel-out/
 
 # Node
-/node_modules
+node_modules/
 npm-debug.log
 yarn-error.log
+
+# Environment & local secrets (Backendhez is hasznos)
+.env
+.env.local
+*.env
 
 # IDEs and editors
 .idea/
@@ -29,14 +34,19 @@ yarn-error.log
 !.vscode/mcp.json
 .history/*
 
+# Visual Studio (C# / .NET backend esetén, ha azt használsz)
+.vs/
+bin/
+obj/
+
 # Miscellaneous
-/.angular/cache
+.angular/cache
 .sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
+connect.lock
+coverage/
+libpeerconnection.log
 testem.log
-/typings
+typings/
 __screenshots__/
 
 # System files

@@ -2,13 +2,22 @@
 Az egy Rick and Morty api segítségével elkészült Angulár srud app. Tartalmaz többek között 
 egy .net backendet és egy Keycloak rendszeret is.
 
-# Függőségek:
-Keycloak:
-Ez a imga futtatásával jön létre a megfelelő container:
+## Függőségek:
+### Keycloak: 
+Ez a image futtatásával jön létre a megfelelő container:
 ```bash
 docker run -p 127.0.0.1:8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.7.0 start-dev
-
 ```
+Ezután létre kell hozzni  egy demo-realms nevű reamlt.
+Egy kliens beállítása a következő paraméterekkel:
+* client: angular-app
+* root url: http://localhost:4200
+* valid redirect urls : http://localhost:4200/*
+* web origins: http://localhost:4200
+* admin url: http://localhost:4200
+
+Ezután létre hozunk egy usert tesztszőleges felhasználó névvel és jelszóval.
+
 
 # RickSrcrub
 
